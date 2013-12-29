@@ -104,9 +104,13 @@ public static class PowerShellExt
 }
 "@
 
+$r = (Resolve-Path .\Nancy.dll), `
+     (Resolve-Path .\Nancy.Hosting.Self.dll), `
+     'Microsoft.CSharp.dll'
+
 Add-Type `
     -TypeDefinition $NancyCode `
-    -ReferencedAssemblies (Resolve-Path .\Nancy.dll), (Resolve-Path .\Nancy.Hosting.Self.dll), Microsoft.CSharp.dll `
+    -ReferencedAssemblies $r `
     -OutputType ConsoleApplication `
     -OutputAssembly Program.exe
 
